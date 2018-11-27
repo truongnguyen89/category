@@ -6,6 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -15,15 +17,12 @@ import java.net.InetAddress;
 @EnableAsync
 @EnableJpaAuditing
 @EnableAutoConfiguration
-//@EnableFeignClients(basePackages = {"com.ecpay.common.feign"})
-//@ComponentScan(basePackages = "com.ecpay.*")
+@EnableFeignClients(basePackages = {"com.football.*"})
+//@EnableFeignClients(basePackages = {"com.football.common.feign"})
+@ComponentScan(basePackages = "com.football.*")
 @EnableEurekaClient
 @SpringBootApplication
 public class CategoryApplication {
-
-    //    public static void main(String[] args) {
-//        SpringApplication.run(CategoryApplication.class, args);
-//    }
     private static final Logger LOGGER = LogManager.getLogger(CategoryApplication.class);
 
     public static void main(String[] args) {
@@ -50,3 +49,4 @@ public class CategoryApplication {
         LOGGER.info("[E][" + id + "][Duration = " + (System.currentTimeMillis() - id) + "] >>>>>>>>>>>>>>>>>>>>>>>>>> End Start EcpayFinanceApplication ...");
     }
 }
+
