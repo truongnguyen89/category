@@ -116,6 +116,11 @@
             <artifactId>je</artifactId>
             <version>RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>5.2.3</version>
+        </dependency>
         <!--Begin dung cho core-->
         <!-- https://mvnrepository.com/artifact/org.jpos/jpos-->
         <dependency>
