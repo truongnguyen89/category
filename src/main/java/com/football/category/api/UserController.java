@@ -1,4 +1,4 @@
-package com.football.category.api.user;
+package com.football.category.api;
 
 import com.football.category.service.user.UserService;
 import com.football.common.constant.Constant;

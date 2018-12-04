@@ -1,4 +1,4 @@
-package com.football.category.repository.user;
+package com.football.category.repository;
 
 import com.football.common.model.user.User;
 import org.springframework.data.repository.CrudRepository;
