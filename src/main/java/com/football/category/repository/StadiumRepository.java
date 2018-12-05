@@ -1,6 +1,6 @@
 package com.football.category.repository;
 
-import com.football.common.model.agent.Agent;
+import com.football.common.model.stadium.Stadium;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,8 +14,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Repository
-public interface AgentRepository extends CrudRepository<Agent, Long> {
-    List<Agent> findByStatus(int status);
+public interface StadiumRepository extends CrudRepository<Stadium, Long> {
+    List<Stadium> findByStatus(int status);
 
-    List<Agent> findByCode(String code);
 }

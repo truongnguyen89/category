@@ -1,10 +1,8 @@
 package com.football.category.service.init;
 
 import com.football.category.service.BaseService;
-import com.football.category.service.agent.AgentService;
-import com.football.category.service.api.ApiService;
+import com.football.category.service.stadium.StadiumService;
 import com.football.category.service.param.ParamService;
-import com.football.category.service.role.RolesService;
 import com.football.common.cache.Cache;
 import com.football.common.constant.Constant;
 import com.football.common.model.agent.Agent;
@@ -34,15 +32,6 @@ public class InitServiceImpl extends BaseService implements InitService {
     @Autowired
     ParamService paramService;
 
-    @Autowired
-    AgentService agentService;
-
-    @Autowired
-    ApiService apiService;
-
-    @Autowired
-    RolesService rolesService;
-
     @Override
     public void initCache() throws Exception {
         long id = System.currentTimeMillis();
@@ -54,28 +43,6 @@ public class InitServiceImpl extends BaseService implements InitService {
         else
             LOGGER.info("Response when load param cache : " + Cache.setParamCache(paramList).toString());
 
-        //Load agent
-        List<Agent> agentList = agentService.findByStatus(Constant.STATUS_OBJECT.ACTIVE_INT);
-        if (ArrayListCommon.isNullOrEmpty(agentList))
-            LOGGER.error("Agent active not found");
-        else
-            LOGGER.info("Response when load agent cache : " + Cache.setAgentCache(agentList).toString());
-
-        //Load api rest
-        List<Api> apiList = apiService.findByStatus(Constant.STATUS_OBJECT.ACTIVE_INT);
-        if (ArrayListCommon.isNullOrEmpty(apiList))
-            LOGGER.error("Api active not found");
-        else {
-            Cache.setApiListCache(apiList);
-            LOGGER.info("Response when load api cache : " + Response.OK.toString());
-        }
-
-        //Load roles
-        List<Roles> rolesList = rolesService.findByStatus(Constant.STATUS_OBJECT.ACTIVE_INT);
-        if (ArrayListCommon.isNullOrEmpty(rolesList))
-            LOGGER.error("Roles active not found");
-        else
-            LOGGER.info("Response when load roles cache : " + Cache.setRolesCache(rolesList).toString());
         LOGGER.info("[E][Duration = " + (System.currentTimeMillis() - id) + "]---------------------------------INIT---------------------------------");
     }
 }

@@ -32,16 +32,13 @@ public class UserController {
     @RequestMapping(method = POST)
     @ResponseBody
     public ResponseEntity<?> create(
-            @RequestParam(value = Constant.KEY.EDONG, required = false, defaultValue = "0912345678") String edong,
-            @RequestParam(value = Constant.KEY.AUDIT_NUMBER, required = false, defaultValue = "123456789") long auditNumber,
             @Valid @RequestBody User user
     ) throws Exception {
         return new ResponseEntity<User>(userService.create(user), HttpStatus.CREATED);
     }
 
     @RequestMapping(method = GET)
-    public ResponseEntity<?> findAll(@RequestParam(value = Constant.KEY.EDONG, required = false, defaultValue = "0912345678") String edong,
-                                     @RequestParam(value = Constant.KEY.AUDIT_NUMBER, required = false, defaultValue = "123456789") long auditNumber) throws Exception {
+    public ResponseEntity<?> findAll() throws Exception {
         return new ResponseEntity<Iterable<User>>(userService.findAll(), HttpStatus.OK);
     }
 }

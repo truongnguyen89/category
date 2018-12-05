@@ -50,31 +50,8 @@ public class ParamController {
     }
 
     @RequestMapping(path = "/status/{status}", method = GET)
-    public ResponseEntity<?> findByStatus(@RequestParam(value = Constant.KEY.EDONG, required = false, defaultValue = "0912345678") String edong,
-                                          @RequestParam(value = Constant.KEY.AUDIT_NUMBER, required = false, defaultValue = "123456789") long auditNumber,
-                                          @PathVariable int status) throws Exception {
-        Date startDate = new Date();
-        Map<String, Object> requestMap = new HashMap<>();
-        Map<String, Object> responseMap = new HashMap<>();
-        requestMap.put(Constant.KEY.REQUEST_METHOD, GET.name());
-        requestMap.put(Constant.KEY.EDONG, edong);
-        requestMap.put(Constant.KEY.AUDIT_NUMBER, (Object) auditNumber);
-        requestMap.put(Constant.KEY.STATUS, status);
-        String requestStatus = Constant.LOG_APPENDER.STATUS.SUCCESS;
-        List<Param> paramList = new ArrayList<>();
-        try {
-            paramList = paramService.findByStatus(status);
-            responseMap.put("size", (Object) (paramList == null ? 0 : paramList.size()));
-            return new ResponseEntity<List<Param>>(paramList, HttpStatus.OK);
-        } catch (CommonException e) {
-            requestStatus = Constant.LOG_APPENDER.STATUS.EXCEPTION;
-            responseMap.put(Constant.KEY.EXCEPTION, e.getMessage());
-            return new ResponseEntity<>(e.toString(), e.getResponse().getStatus());
-        } finally {
-            Date endDate = new Date();
-            LogBase logBase = new LogBase(auditNumber, "/api/database/param/findByStatus", startDate, endDate, requestStatus, requestMap, responseMap);
-            LOGGER.info(JsonCommon.objectToJsonNotNull(logBase));
-        }
+    public ResponseEntity<?> findByStatus(@PathVariable int status) throws Exception {
+        return new ResponseEntity<List<Param>>(paramService.findByStatus(status), HttpStatus.OK);
     }
 
     @RequestMapping(method = GET)

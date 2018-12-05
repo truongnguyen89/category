@@ -36,27 +36,8 @@ public class InitController {
 
 
     @RequestMapping(method = GET)
-    public ResponseEntity<?> init(@RequestParam(value = Constant.KEY.EDONG, required = false, defaultValue = "0912345678") String edong,
-                                  @RequestParam(value = Constant.KEY.AUDIT_NUMBER, required = false, defaultValue = "123456789") long auditNumber) throws Exception {
-        Date startDate = new Date();
-        Map<String, Object> requestMap = new HashMap<>();
-        Map<String, Object> responseMap = new HashMap<>();
-        requestMap.put(Constant.KEY.REQUEST_METHOD, GET.name());
-        requestMap.put(Constant.KEY.EDONG, edong);
-        requestMap.put(Constant.KEY.AUDIT_NUMBER, (Object) auditNumber);
-        String requestStatus = Constant.LOG_APPENDER.STATUS.SUCCESS;
-        try {
-            initService.initCache();
-            responseMap.put("HttpStatus", (Object) HttpStatus.OK.value());
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (CommonException e) {
-            requestStatus = Constant.LOG_APPENDER.STATUS.EXCEPTION;
-            responseMap.put(Constant.KEY.EXCEPTION, e.getMessage());
-            return new ResponseEntity<>(e.toString(), e.getResponse().getStatus());
-        } finally {
-            Date endDate = new Date();
-            LogBase logBase = new LogBase(auditNumber, "InitController.init", startDate, endDate, requestStatus, requestMap, responseMap);
-            LOGGER.info(JsonCommon.objectToJsonNotNull(logBase));
-        }
+    public ResponseEntity<?> init() throws Exception {
+        initService.initCache();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
