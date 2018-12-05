@@ -1,15 +1,10 @@
 package com.football.category.service.init;
 
 import com.football.category.service.BaseService;
-import com.football.category.service.stadium.StadiumService;
 import com.football.category.service.param.ParamService;
 import com.football.common.cache.Cache;
 import com.football.common.constant.Constant;
-import com.football.common.model.agent.Agent;
-import com.football.common.model.api.Api;
 import com.football.common.model.param.Param;
-import com.football.common.model.role.Roles;
-import com.football.common.response.Response;
 import com.football.common.util.ArrayListCommon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

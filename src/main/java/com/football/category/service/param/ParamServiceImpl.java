@@ -80,7 +80,6 @@ public class ParamServiceImpl extends BaseService implements ParamService {
             else {
                 paramOld.setValue(!StringCommon.isNullOrBlank(param.getValue()) ? param.getValue() : paramOld.getValue());
                 paramOld.setName(!StringCommon.isNullOrBlank(param.getName()) ? param.getName() : paramOld.getName());
-                paramOld.setValueAlt(!StringCommon.isNullOrBlank(param.getValueAlt()) ? param.getValueAlt() : paramOld.getValueAlt());
                 paramOld.setStatus(param.getStatus());
                 return paramRepository.save(paramOld);
             }
