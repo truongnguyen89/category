@@ -56,23 +56,6 @@ public class ParamServiceImpl extends BaseService implements ParamService {
 
     @Override
     public Param findById(String type, String code) throws Exception {
-        Connection connection = dataSource.getConnection();
-        CallableStatement ps = null;
-        try {
-            ps = connection.prepareCall("{call pro_test (?, ?, ?)}");
-            ps.setString(1, type);
-            ps.setString(2, code);
-            ps.registerOutParameter(3, Types.INTEGER);
-            ps.execute();
-            int rs = ps.getInt(3);
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>> " + rs);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Exception xxxxxxx " + e.toString());
-        } finally {
-            ConnectionCommon.close(ps);
-            ConnectionCommon.close(connection);
-        }
         return paramRepository.findOne(new ParamKey(type, code));
     }
 
@@ -104,6 +87,25 @@ public class ParamServiceImpl extends BaseService implements ParamService {
                 paramOld.setStatus(param.getStatus());
                 return paramRepository.save(paramOld);
             }
+        }
+    }
+
+    public int countByTypeCode(String type, String code) throws Exception {
+        Connection connection = dataSource.getConnection();
+        CallableStatement cs = null;
+        try {
+            cs = connection.prepareCall("{call pro_test (?, ?, ?)}");
+            ConnectionCommon.doSetStringParams(cs, 1, type);
+            ConnectionCommon.doSetStringParams(cs, 2, code);
+            cs.registerOutParameter(3, Types.INTEGER);
+            cs.execute();
+            return cs.getInt(3);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            ConnectionCommon.close(cs);
+            ConnectionCommon.close(connection);
         }
     }
 }
