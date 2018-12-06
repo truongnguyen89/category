@@ -15,12 +15,4 @@ CREATE TABLE `stadium` (
   `d_created_at` datetime NOT NULL,
   `d_updated_at` datetime,
   PRIMARY KEY (`n_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-INSERT INTO `stadium` (`n_id`,`s_name`,`s_address`,`s_email`,`s_phone`,`s_longitude`,`s_latitude`,`n_count_sub_stadium`,`n_type`,`n_status`,`d_created_at`,`d_updated_at`)
-VALUES (1,'Sân bóng Thành Phát','Hoàng Minh Giám','thanhphat@gmail.com','0989666777','21.898989','105.787878',4,1,1,sysdate(),NULL);
-INSERT INTO `stadium` (`n_id`,`s_name`,`s_address`,`s_email`,`s_phone`,`s_longitude`,`s_latitude`,`n_count_sub_stadium`,`n_type`,`n_status`,`d_created_at`,`d_updated_at`)
-VALUES (2,'Sân bóng Thuỷ Lợi','Đại Học Thuỷ Lợi','thuyloi@gmail.com','0989666777','21.898989','105.787878',4,1,1,sysdate(),NULL);
-INSERT INTO `stadium` (`n_id`,`s_name`,`s_address`,`s_email`,`s_phone`,`s_longitude`,`s_latitude`,`n_count_sub_stadium`,`n_type`,`n_status`,`d_created_at`,`d_updated_at`)
-VALUES (3,'Sân bóng Định Công','Định Công','dinhcong@gmail.com','0989666777','21.898989','105.787878',4,1,1,sysdate(),NULL);
-INSERT INTO `stadium` (`n_id`,`s_name`,`s_address`,`s_email`,`s_phone`,`s_longitude`,`s_latitude`,`n_count_sub_stadium`,`n_type`,`n_status`,`d_created_at`,`d_updated_at`)
-VALUES (4,'Sân bóng Hai Bà Trưng','Hai Bà Trưng','haibatrung@gmail.com','0989666777','21.898989','105.787878',4,1,1,sysdate(),NULL);
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

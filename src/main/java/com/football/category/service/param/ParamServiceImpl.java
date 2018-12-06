@@ -4,6 +4,7 @@ import com.football.category.repository.ParamRepository;
 import com.football.category.service.BaseService;
 import com.football.common.constant.Constant;
 import com.football.common.constant.TextConstant;
+import com.football.common.database.ConnectionCommon;
 import com.football.common.exception.CommonException;
 import com.football.common.message.MessageCommon;
 import com.football.common.model.param.Param;
@@ -14,6 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.Types;
 import java.util.List;
 
 /**
@@ -52,6 +56,23 @@ public class ParamServiceImpl extends BaseService implements ParamService {
 
     @Override
     public Param findById(String type, String code) throws Exception {
+        Connection connection = dataSource.getConnection();
+        CallableStatement ps = null;
+        try {
+            ps = connection.prepareCall("{call pro_test (?, ?, ?)}");
+            ps.setString(1, type);
+            ps.setString(2, code);
+            ps.registerOutParameter(3, Types.INTEGER);
+            ps.execute();
+            int rs = ps.getInt(3);
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>> " + rs);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Exception xxxxxxx " + e.toString());
+        } finally {
+            ConnectionCommon.close(ps);
+            ConnectionCommon.close(connection);
+        }
         return paramRepository.findOne(new ParamKey(type, code));
     }
 

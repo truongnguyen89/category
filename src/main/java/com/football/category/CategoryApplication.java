@@ -27,7 +27,7 @@ public class CategoryApplication {
 
     public static void main(String[] args) {
         long id = System.currentTimeMillis();
-        LOGGER.info("[B][" + id + "] >>>>>>>>>>>>>>>>>>>>>>>>>> Start EcpayFinanceApplication ...");
+        LOGGER.info("[B][" + id + "] >>>>>>>>>>>>>>>>>>>>>>>>>> Start CategoryApplication ...");
         SpringApplication app = new SpringApplication(CategoryApplication.class);
         Environment env = app.run(args).getEnvironment();
         String protocol = "http";
@@ -46,7 +46,7 @@ public class CategoryApplication {
         LOGGER.info("   Profile(s)          : " + env.getActiveProfiles()[0]);
         LOGGER.info("----------------------------------------------------------");
 
-        LOGGER.info("[E][" + id + "][Duration = " + (System.currentTimeMillis() - id) + "] >>>>>>>>>>>>>>>>>>>>>>>>>> End Start EcpayFinanceApplication ...");
+        LOGGER.info("[E][" + id + "][Duration = " + (System.currentTimeMillis() - id) + "] >>>>>>>>>>>>>>>>>>>>>>>>>> End Start CategoryApplication ...");
     }
 }
 

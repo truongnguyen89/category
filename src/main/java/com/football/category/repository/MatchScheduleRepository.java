@@ -1,23 +1,19 @@
 package com.football.category.repository;
 
-import com.football.common.model.param.Param;
-import com.football.common.model.param.ParamKey;
+import com.football.common.model.match.MatchSchedule;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
 import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
  * User: Truong Nguyen
- * Date: 04-Dec-18
- * Time: 3:32 PM
+ * Date: 06-Dec-18
+ * Time: 10:03 AM
  * To change this template use File | Settings | File Templates.
  */
 @Repository
-public interface ParamRepository extends CrudRepository<Param, ParamKey> {
-    List<Param> findByStatus(int status);
-
-    int countAllByStatus(int status);
+public interface MatchScheduleRepository extends CrudRepository<MatchSchedule, Long> {
+    List<MatchSchedule> findByStatus(int status);
 }
