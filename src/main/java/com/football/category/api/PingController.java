@@ -1,12 +1,17 @@
 package com.football.category.api;
 
+import com.football.category.service.area.AreaService;
+import com.football.common.constant.Constant;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,9 +24,16 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RequestMapping("api/category/ping")
 @RefreshScope
 public class PingController {
+    @Autowired
+    AreaService areaService;
 
     @RequestMapping(method = GET)
     public ResponseEntity<?> ping() throws Exception {
         return new ResponseEntity<Integer>(1, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = POST)
+    public ResponseEntity<?> importFromExcelFile(@RequestParam(value = "filePatch", required = true, defaultValue = "/Users/truongnq/1.Workspace/File/D.xls") String filePatch) throws Exception {
+        return new ResponseEntity<Boolean>(areaService.importFromExcelFile(filePatch), HttpStatus.OK);
     }
 }
