@@ -13,6 +13,8 @@ import com.football.common.model.area.Commune;
 import com.football.common.model.area.CountyDistrict;
 import com.football.common.util.ArrayListCommon;
 import com.football.common.util.JsonCommon;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,8 @@ import java.util.List;
  */
 @Service
 public class AreaServiceImpl extends BaseService implements AreaService {
+    private static final Logger LOGGER = LogManager.getLogger(Constant.LOG_APPENDER.CATEGORY);
+
     @Autowired
     CityProvincialRepository cityProvincialRepository;
     @Autowired
@@ -47,7 +51,6 @@ public class AreaServiceImpl extends BaseService implements AreaService {
             if (list != null) {
                 for (int i = 0; i < list.size(); i++) {
                     long id = System.currentTimeMillis();
-                    System.out.println(JsonCommon.objectToJsonLog(list.get(i)) + " >>> " + (System.currentTimeMillis() - id));
                     Object[] object = (Object[]) list.get(i);
                     int k = 0;
                     String cityName = object[k] != null ? object[k++].toString().trim() : "";
@@ -96,7 +99,7 @@ public class AreaServiceImpl extends BaseService implements AreaService {
                         communeId = communeList.get(0).getId();
                     }
 
-                    List<Area> areaList = areaRepository.findByCityProvincialIdAndAndCountyDistrictIdAndAndCommuneId(
+                    List<Area> areaList = areaRepository.findByCityProvincialIdAndCountyDistrictIdAndCommuneId(
                             cityProvincialId, countyDistrictId, communeId
                     );
 
@@ -104,6 +107,18 @@ public class AreaServiceImpl extends BaseService implements AreaService {
                         areaList.get(0).setStatus(Constant.STATUS_OBJECT.ACTIVE_INT);
                         areaRepository.save(areaList.get(0));
                     } else {
+                        List<Area> areaListDistrict = areaRepository.findByCityProvincialIdAndCountyDistrictId(
+                                cityProvincialId, countyDistrictId
+                        );
+                        //Save ban ghi cho quan
+                        if (ArrayListCommon.isNullOrEmpty(areaListDistrict)) {
+                            Area area = new Area();
+                            area.setCityProvincialId(cityProvincialId);
+                            area.setCountyDistrictId(countyDistrictId);
+                            area.setStatus(Constant.STATUS_OBJECT.ACTIVE_INT);
+                            areaRepository.save(area);
+                        }
+                        //Save ban ghi den huyen
                         Area area = new Area();
                         area.setCityProvincialId(cityProvincialId);
                         area.setCountyDistrictId(countyDistrictId);
@@ -111,6 +126,7 @@ public class AreaServiceImpl extends BaseService implements AreaService {
                         area.setStatus(Constant.STATUS_OBJECT.ACTIVE_INT);
                         areaRepository.save(area);
                     }
+                    LOGGER.info(" >>> " + (System.currentTimeMillis() - id) + " >>> " + JsonCommon.objectToJsonNotNull(list.get(i)));
                 }
             }
         } catch (Exception e) {
