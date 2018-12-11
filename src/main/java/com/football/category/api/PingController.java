@@ -33,7 +33,7 @@ public class PingController {
     }
 
     @RequestMapping(method = POST)
-    public ResponseEntity<?> importFromExcelFile(@RequestParam(value = "filePatch", required = true, defaultValue = "/Users/truongnq/1.Workspace/File/D.xls") String filePatch) throws Exception {
+    public ResponseEntity<?> importFromExcelFile(@RequestParam(value = "filePatch", required = true, defaultValue = "/Users/truongnq/4.Artifacts_out/file/area.xls") String filePatch) throws Exception {
         return new ResponseEntity<Boolean>(areaService.importFromExcelFile(filePatch), HttpStatus.OK);
     }
 }
