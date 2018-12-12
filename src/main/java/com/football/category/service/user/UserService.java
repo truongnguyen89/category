@@ -15,4 +15,6 @@ public interface UserService {
     User create(User user) throws Exception;
 
     Iterable<User> findAll() throws Exception;
+
+    User update(User user) throws Exception;
 }

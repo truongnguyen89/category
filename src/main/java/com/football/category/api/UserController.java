@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -40,5 +39,13 @@ public class UserController {
     @RequestMapping(method = GET)
     public ResponseEntity<?> findAll() throws Exception {
         return new ResponseEntity<Iterable<User>>(userService.findAll(), HttpStatus.OK);
+    }
+
+    @RequestMapping(path = "/{id}", method = PUT)
+    @ResponseBody
+    public ResponseEntity<?> update(@PathVariable long id,
+                                    @Valid @RequestBody User user) throws Exception {
+        user.setId(id);
+        return new ResponseEntity<User>(userService.update(user), HttpStatus.OK);
     }
 }

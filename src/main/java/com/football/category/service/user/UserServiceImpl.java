@@ -27,4 +27,9 @@ public class UserServiceImpl implements UserService {
     public Iterable<User> findAll() throws Exception {
         return userRepository.findAll();
     }
+
+    @Override
+    public User update(User user) throws Exception {
+        return userRepository.save(user);
+    }
 }
