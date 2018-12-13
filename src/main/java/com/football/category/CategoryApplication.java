@@ -46,7 +46,7 @@ public class CategoryApplication {
         LOGGER.info("   Profile(s)          : " + env.getActiveProfiles()[0]);
         LOGGER.info("----------------------------------------------------------");
 
-        LOGGER.info("[E][" + id + "][Duration = " + (System.currentTimeMillis() - id) + "] >>>>>>>>>>>>>>>>>>>>>>>>>> End Start CategoryApplication ...");
+        LOGGER.info("[E][" + id + "][Duration = " + (System.currentTimeMillis() - id) + "] >>>>>>>>>>>>>>>>>>>>>>>>>> SUCCESS <<<<<<<<<<<<<<<<<<<<<<<<<");
     }
 }
 

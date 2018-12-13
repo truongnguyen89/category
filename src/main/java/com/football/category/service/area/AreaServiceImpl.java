@@ -16,9 +16,11 @@ import com.football.common.util.JsonCommon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -132,18 +134,29 @@ public class AreaServiceImpl extends BaseService implements AreaService {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("Exception when importFromExcelFile ", e);
             return false;
         }
         return true;
     }
 
     @Override
-    public boolean importFromExcelFile(String filePath) {
-        File file = new File(filePath);
-        if (!file.exists())
-            return false;
-        else
-            return importFromExcelFile(file);
+    public boolean importFromExcelFile() {
+        long rownum = areaRepository.count();
+        if (rownum > 0)
+            return true;
+        else {
+            File file = null;
+            try {
+                file = new ClassPathResource("area.xls").getFile();
+                if (!file.exists())
+                    return false;
+                else
+                    return importFromExcelFile(file);
+            } catch (IOException e) {
+                LOGGER.error("IOException ", e);
+                return false;
+            }
+        }
     }
 }

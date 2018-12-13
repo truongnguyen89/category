@@ -44,15 +44,7 @@ public class InitServiceImpl extends BaseService implements InitService {
             LOGGER.error("Param active not found");
         else
             LOGGER.info("Response when load param cache : " + Cache.setParamCache(paramList).toString());
-        LOGGER.info("---------------------------------INIT AREA EXCEL---------------------------------");
-        File file = null;
-        try {
-            file = new ClassPathResource("area.xls").getFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        areaService.importFromExcelFile(file);
-
+        LOGGER.info("----------------INIT AREA EXCEL >>> " + areaService.importFromExcelFile() + "----------------");
         LOGGER.info("[E][Duration = " + (System.currentTimeMillis() - id) + "]---------------------------------INIT---------------------------------");
     }
 }
