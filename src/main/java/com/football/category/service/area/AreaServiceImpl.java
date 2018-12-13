@@ -36,10 +36,13 @@ public class AreaServiceImpl extends BaseService implements AreaService {
 
     @Autowired
     CityProvincialRepository cityProvincialRepository;
+
     @Autowired
     CountyDistrictRepository countyDistrictRepository;
+
     @Autowired
     CommuneRepository communeRepository;
+
     @Autowired
     AreaRepository areaRepository;
 
@@ -74,6 +77,16 @@ public class AreaServiceImpl extends BaseService implements AreaService {
                             cityProvincialId = cityProvincialRepository.save(cityProvincial).getId();
                         } else {
                             cityProvincialId = cityProvincialList.get(0).getId();
+                        }
+
+                        List<Area> areaCity = areaRepository.findByCityProvincialIdAndType(cityProvincialId, 3);
+                        if (ArrayListCommon.isNullOrEmpty(areaCity)){
+                            Area area = new Area();
+                            area.setCityProvincialId(cityProvincialId);
+                            area.setStatus(Constant.STATUS_OBJECT.ACTIVE);
+                            area.setType(Constant.AREA.);
+                            areaRepository.save(area);
+                            areaRepository.save()
                         }
                         long countyDistrictId = 0L;
                         List<CountyDistrict> countyDistrictList = countyDistrictRepository.findByCode(districtCode);
