@@ -79,14 +79,13 @@ public class AreaServiceImpl extends BaseService implements AreaService {
                             cityProvincialId = cityProvincialList.get(0).getId();
                         }
 
-                        List<Area> areaCity = areaRepository.findByCityProvincialIdAndType(cityProvincialId, 3);
-                        if (ArrayListCommon.isNullOrEmpty(areaCity)){
+                        List<Area> areaCity = areaRepository.findByCityProvincialIdAndType(cityProvincialId, Constant.AREA.LEVEL.CITY);
+                        if (ArrayListCommon.isNullOrEmpty(areaCity)) {
                             Area area = new Area();
                             area.setCityProvincialId(cityProvincialId);
                             area.setStatus(Constant.STATUS_OBJECT.ACTIVE);
-                            area.setType(Constant.AREA.);
+                            area.setType(Constant.AREA.LEVEL.CITY);
                             areaRepository.save(area);
-                            areaRepository.save()
                         }
                         long countyDistrictId = 0L;
                         List<CountyDistrict> countyDistrictList = countyDistrictRepository.findByCode(districtCode);
@@ -101,6 +100,15 @@ public class AreaServiceImpl extends BaseService implements AreaService {
                             countyDistrictId = countyDistrictList.get(0).getId();
                         }
 
+                        List<Area> areaDistrict = areaRepository.findByCityProvincialIdAndCountyDistrictIdAndType(cityProvincialId, countyDistrictId, Constant.AREA.LEVEL.DISTRICT);
+                        if (ArrayListCommon.isNullOrEmpty(areaDistrict)) {
+                            Area area = new Area();
+                            area.setCityProvincialId(cityProvincialId);
+                            area.setCountyDistrictId(countyDistrictId);
+                            area.setStatus(Constant.STATUS_OBJECT.ACTIVE);
+                            area.setType(Constant.AREA.LEVEL.DISTRICT);
+                            areaRepository.save(area);
+                        }
                         long communeId = 0L;
                         List<Commune> communeList = communeRepository.findByCode(communecode);
                         if (ArrayListCommon.isNullOrEmpty(communeList)) {
@@ -115,31 +123,17 @@ public class AreaServiceImpl extends BaseService implements AreaService {
                             communeId = communeList.get(0).getId();
                         }
 
-                        List<Area> areaList = areaRepository.findByCityProvincialIdAndCountyDistrictIdAndCommuneId(
-                                cityProvincialId, countyDistrictId, communeId
+                        List<Area> areaCommune = areaRepository.findByCityProvincialIdAndCountyDistrictIdAndCommuneIdAndType(
+                                cityProvincialId, countyDistrictId, communeId, Constant.AREA.LEVEL.COMMUNE
                         );
 
-                        if (!ArrayListCommon.isNullOrEmpty(areaList)) {
-                            areaList.get(0).setStatus(Constant.STATUS_OBJECT.ACTIVE);
-                            areaRepository.save(areaList.get(0));
-                        } else {
-                            List<Area> areaListDistrict = areaRepository.findByCityProvincialIdAndCountyDistrictId(
-                                    cityProvincialId, countyDistrictId
-                            );
-                            //Save ban ghi cho quan
-                            if (ArrayListCommon.isNullOrEmpty(areaListDistrict)) {
-                                Area area = new Area();
-                                area.setCityProvincialId(cityProvincialId);
-                                area.setCountyDistrictId(countyDistrictId);
-                                area.setStatus(Constant.STATUS_OBJECT.ACTIVE);
-                                areaRepository.save(area);
-                            }
-                            //Save ban ghi den huyen
+                        if (ArrayListCommon.isNullOrEmpty(areaCommune)) {
                             Area area = new Area();
                             area.setCityProvincialId(cityProvincialId);
                             area.setCountyDistrictId(countyDistrictId);
                             area.setCommuneId(communeId);
                             area.setStatus(Constant.STATUS_OBJECT.ACTIVE);
+                            area.setType(Constant.AREA.LEVEL.COMMUNE);
                             areaRepository.save(area);
                         }
                         LOGGER.info(" >>> " + (System.currentTimeMillis() - id) + " >>> " + JsonCommon.objectToJsonNotNull(list.get(i)));
