@@ -10,11 +10,8 @@ import com.football.common.util.ArrayListCommon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -44,7 +41,6 @@ public class InitServiceImpl extends BaseService implements InitService {
             LOGGER.error("Param active not found");
         else
             LOGGER.info("Response when load param cache : " + Cache.setParamCache(paramList).toString());
-        LOGGER.info("----------------INIT AREA EXCEL >>> " + areaService.importFromExcelFile() + "----------------");
         LOGGER.info("[E][Duration = " + (System.currentTimeMillis() - id) + "]---------------------------------INIT---------------------------------");
     }
 }
