@@ -1,5 +1,6 @@
 package com.football.category.api;
 
+import com.football.category.service.area.AreaService;
 import com.football.category.service.init.InitService;
 import com.football.common.constant.Constant;
 import com.football.common.exception.CommonException;
@@ -19,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  * Created by IntelliJ IDEA.
@@ -34,10 +36,17 @@ public class InitController {
     @Autowired
     InitService initService;
 
+    @Autowired
+    AreaService areaService;
 
     @RequestMapping(method = GET)
     public ResponseEntity<?> init() throws Exception {
         initService.initCache();
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(method = POST)
+    public ResponseEntity<?> importFromExcelFile() throws Exception {
+        return new ResponseEntity<Boolean>(areaService.importFromExcelFile(), HttpStatus.OK);
     }
 }

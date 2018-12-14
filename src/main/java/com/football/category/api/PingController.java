@@ -24,16 +24,10 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RequestMapping("api/category/ping")
 @RefreshScope
 public class PingController {
-    @Autowired
-    AreaService areaService;
 
     @RequestMapping(method = GET)
     public ResponseEntity<?> ping() throws Exception {
         return new ResponseEntity<Integer>(1, HttpStatus.OK);
     }
 
-    @RequestMapping(method = POST)
-    public ResponseEntity<?> importFromExcelFile() throws Exception {
-        return new ResponseEntity<Boolean>(areaService.importFromExcelFile(), HttpStatus.OK);
-    }
 }
