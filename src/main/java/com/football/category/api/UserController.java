@@ -22,7 +22,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
  * To change this template use File | Settings | File Templates.
  */
 @RestController
-@RequestMapping(value = "/api/category/user")
+@RequestMapping(value = "user")
 public class UserController {
     private static final Logger LOGGER = LogManager.getLogger(Constant.LOG_APPENDER.CATEGORY);
     @Autowired

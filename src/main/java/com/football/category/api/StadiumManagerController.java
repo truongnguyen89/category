@@ -17,7 +17,7 @@ import java.util.*;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
-@RequestMapping(value = "/api/category/stadiumManager")
+@RequestMapping(value = "stadiumManager")
 public class StadiumManagerController {
     private static final Logger LOGGER = LogManager.getLogger(Constant.LOG_APPENDER.CATEGORY);
     @Autowired
