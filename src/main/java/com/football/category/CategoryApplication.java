@@ -18,7 +18,6 @@ import java.net.InetAddress;
 @EnableJpaAuditing
 @EnableAutoConfiguration
 @EnableFeignClients(basePackages = {"com.football.*"})
-//@EnableFeignClients(basePackages = {"com.football.common.feign"})
 @ComponentScan(basePackages = "com.football.*")
 @EnableEurekaClient
 @SpringBootApplication
