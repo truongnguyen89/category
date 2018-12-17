@@ -408,6 +408,11 @@
             <artifactId>flyway-core</artifactId>
             <version>5.2.3</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.football</groupId>-->
+            <!--<artifactId>common</artifactId>-->
+            <!--<version>${version}</version>-->
+        <!--</dependency>-->
     </dependencies>
 
     <dependencyManagement>
@@ -427,6 +432,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
             </plugin>
         </plugins>
     </build>
