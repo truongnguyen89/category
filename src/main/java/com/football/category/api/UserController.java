@@ -28,24 +28,14 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(method = POST)
-    @ResponseBody
-    public ResponseEntity<?> create(
-            @Valid @RequestBody User user
-    ) throws Exception {
-        return new ResponseEntity<User>(userService.create(user), HttpStatus.CREATED);
-    }
-
     @RequestMapping(method = GET)
     public ResponseEntity<?> findAll() throws Exception {
         return new ResponseEntity<Iterable<User>>(userService.findAll(), HttpStatus.OK);
     }
 
-    @RequestMapping(path = "/{id}", method = PUT)
-    @ResponseBody
-    public ResponseEntity<?> update(@PathVariable long id,
-                                    @Valid @RequestBody User user) throws Exception {
-        user.setId(id);
-        return new ResponseEntity<User>(userService.update(user), HttpStatus.OK);
+    @RequestMapping(path = "/{id}", method = GET)
+    public ResponseEntity<?> findById(
+            @PathVariable long id) throws Exception {
+        return new ResponseEntity<User>(userService.findById(id), HttpStatus.OK);
     }
 }

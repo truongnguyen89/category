@@ -12,9 +12,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface UserService {
-    User create(User user) throws Exception;
+    User findById(long id) throws Exception;
 
     Iterable<User> findAll() throws Exception;
 
-    User update(User user) throws Exception;
 }

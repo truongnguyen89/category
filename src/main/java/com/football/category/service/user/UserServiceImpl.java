@@ -19,17 +19,12 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
 
     @Override
-    public User create(User user) throws Exception {
-        return userRepository.save(user);
-    }
-
-    @Override
     public Iterable<User> findAll() throws Exception {
         return userRepository.findAll();
     }
 
     @Override
-    public User update(User user) throws Exception {
-        return userRepository.save(user);
+    public User findById(long id) throws Exception {
+        return userRepository.findOne(id);
     }
 }
