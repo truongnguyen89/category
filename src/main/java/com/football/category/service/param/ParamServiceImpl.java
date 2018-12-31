@@ -1,6 +1,5 @@
 package com.football.category.service.param;
 
-import com.football.category.repository.ParamRepository;
 import com.football.category.service.BaseService;
 import com.football.common.constant.Constant;
 import com.football.common.database.ConnectionCommon;
@@ -8,6 +7,7 @@ import com.football.common.exception.CommonException;
 import com.football.common.message.MessageCommon;
 import com.football.common.model.param.Param;
 import com.football.common.model.param.ParamKey;
+import com.football.common.repository.ParamRepository;
 import com.football.common.response.Response;
 import com.football.common.util.Resource;
 import com.football.common.util.StringCommon;

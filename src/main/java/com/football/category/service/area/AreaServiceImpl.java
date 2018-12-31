@@ -1,9 +1,5 @@
 package com.football.category.service.area;
 
-import com.football.category.repository.AreaRepository;
-import com.football.category.repository.CityProvincialRepository;
-import com.football.category.repository.CommuneRepository;
-import com.football.category.repository.CountyDistrictRepository;
 import com.football.category.service.BaseService;
 import com.football.common.constant.Constant;
 import com.football.common.file.ExcelCommon;
@@ -11,6 +7,10 @@ import com.football.common.model.area.Area;
 import com.football.common.model.area.CityProvincial;
 import com.football.common.model.area.Commune;
 import com.football.common.model.area.CountyDistrict;
+import com.football.common.repository.AreaRepository;
+import com.football.common.repository.CityProvincialRepository;
+import com.football.common.repository.CommuneRepository;
+import com.football.common.repository.CountyDistrictRepository;
 import com.football.common.util.ArrayListCommon;
 import com.football.common.util.JsonCommon;
 import org.apache.logging.log4j.LogManager;

@@ -1,14 +1,13 @@
 package com.football.category.service.stadium;
 
-import com.football.category.repository.StadiumManagerRepository;
-import com.football.category.repository.StadiumRepository;
-import com.football.category.repository.UserRepository;
 import com.football.category.service.BaseService;
-import com.football.category.service.user.UserService;
 import com.football.common.exception.CommonException;
 import com.football.common.model.stadium.Stadium;
 import com.football.common.model.stadium.StadiumManager;
 import com.football.common.model.user.User;
+import com.football.common.repository.StadiumManagerRepository;
+import com.football.common.repository.StadiumRepository;
+import com.football.common.repository.UserRepository;
 import com.football.common.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

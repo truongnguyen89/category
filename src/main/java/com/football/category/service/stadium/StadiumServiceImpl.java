@@ -1,8 +1,8 @@
 package com.football.category.service.stadium;
 
-import com.football.category.repository.StadiumRepository;
 import com.football.category.service.BaseService;
 import com.football.common.model.stadium.Stadium;
+import com.football.common.repository.StadiumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
