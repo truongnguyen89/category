@@ -1,5 +1,6 @@
 package com.football.category;
 
+import com.football.common.constant.Constant;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
@@ -22,7 +23,7 @@ import java.net.InetAddress;
 @EnableEurekaClient
 @SpringBootApplication
 public class CategoryApplication {
-    private static final Logger LOGGER = LogManager.getLogger(CategoryApplication.class);
+    private static final Logger LOGGER = LogManager.getLogger(Constant.LOG_APPENDER.APPLICATION);
 
     public static void main(String[] args) {
         long id = System.currentTimeMillis();
